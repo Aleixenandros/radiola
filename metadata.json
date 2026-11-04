@@ -1,0 +1,17 @@
+{
+  "uuid": "radiola@aleixenandros.me",
+  "name": "Radiola",
+  "description": "Listen to internet radio from the top bar. Search more than 50,000 stations worldwide (radio-browser.info), keep your favorites, see the song that is playing and control playback with the media keys or any media control. Playback keeps going while the screen is locked; the panel menu is hidden on the lock screen.",
+  "shell-version": [
+    "51"
+  ],
+  "url": "https://github.com/Aleixenandros/radiola",
+  "settings-schema": "org.gnome.shell.extensions.radiola",
+  "gettext-domain": "radiola",
+  "session-modes": [
+    "user",
+    "unlock-dialog"
+  ],
+  "version": 1,
+  "version-name": "1.0"
+}

@@ -1,0 +1,89 @@
+/* SPDX-License-Identifier: GPL-2.0-or-later
+ *
+ * Colours use translucent greys and the accent colour so they work with
+ * both the light and the dark shell themes.
+ */
+
+/* Top bar */
+.radiola-active {
+  color: -st-accent-color;
+}
+
+.radiola-panel-label {
+  max-width: 16em;
+  margin-left: 4px;
+}
+
+/* Menu */
+.radiola-menu {
+  min-width: 22em;
+}
+
+/* Station names from the directory can be very long. */
+.radiola-station-name,
+.radiola-song-title,
+.radiola-station-item-name,
+.radiola-station-item-details {
+  max-width: 20em;
+}
+
+.radiola-now-playing {
+  spacing: 12px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+
+.radiola-cover {
+  icon-size: 48px;
+  border-radius: 9px;
+}
+
+.radiola-station-name {
+  font-weight: bold;
+}
+
+.radiola-song-title {
+  font-size: 0.9em;
+}
+
+.radiola-error {
+  color: #e5534b;
+}
+
+.radiola-button {
+  padding: 8px;
+}
+
+.radiola-button StIcon {
+  icon-size: 16px;
+}
+
+.radiola-play-button {
+  background-color: -st-accent-color;
+  color: -st-accent-fg-color;
+}
+
+.radiola-favorites {
+  max-height: 22em;
+}
+
+.radiola-station-item {
+  spacing: 10px;
+}
+
+.radiola-station-icon {
+  icon-size: 24px;
+  border-radius: 6px;
+}
+
+.radiola-station-item-details {
+  font-size: 0.8em;
+}
+
+.radiola-hint {
+  font-style: italic;
+}
+
+.radiola-search-entry {
+  min-width: 18em;
+}

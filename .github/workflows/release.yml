@@ -1,0 +1,54 @@
+# Builds the extension zip and publishes a GitHub Release when a version
+# tag (v2.1, v3.0…) is pushed. Create the tag with `make release VERSION=x.y`.
+# It can also be run by hand from the Actions tab to test the build; then it
+# only validates and packs, without publishing anything.
+#
+# Fedora is used because it ships the same `gnome-extensions` tool that
+# developers use locally, so the zip is identical to `make pack`.
+
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    container: fedora:latest
+
+    steps:
+      - name: Install tools
+        run: dnf install -y --setopt=install_weak_deps=False gnome-shell gettext glib2 zip unzip git gh
+
+      - uses: actions/checkout@v7
+
+      - name: Check that the tag matches metadata.json
+        if: github.ref_type == 'tag'
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          meta=$(sed -n 's/.*"version-name": *"\([^"]*\)".*/\1/p' metadata.json)
+          if [ "$tag" != "$meta" ]; then
+            echo "::error::Tag v$tag does not match version-name $meta in metadata.json"
+            exit 1
+          fi
+
+      - name: Validate and build
+        run: |
+          ./build.sh build
+          unzip -l build/*.shell-extension.zip
+
+      - name: Publish GitHub Release
+        if: github.ref_type == 'tag'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" build/*.shell-extension.zip \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "Radiola ${GITHUB_REF_NAME#v}" \
+            --generate-notes

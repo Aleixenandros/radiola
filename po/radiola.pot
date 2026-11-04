@@ -1,0 +1,306 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the radiola@aleixenandros.me package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: radiola@aleixenandros.me\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-04 19:12+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: prefs.js:71
+msgid "Stations"
+msgstr ""
+
+#: prefs.js:82 lib/indicator.js:294
+msgid "Favorites"
+msgstr ""
+
+#: prefs.js:83
+msgid "Shown in the top bar menu in this order."
+msgstr ""
+
+#: prefs.js:85
+msgid "Add a station by address"
+msgstr ""
+
+#: prefs.js:103
+msgid "No favorites yet"
+msgstr ""
+
+#: prefs.js:104
+msgid "Search below, or add a station by its address with +."
+msgstr ""
+
+#: prefs.js:116
+msgid "Move up"
+msgstr ""
+
+#: prefs.js:118
+msgid "Move down"
+msgstr ""
+
+#: prefs.js:123
+msgid "Edit"
+msgstr ""
+
+#: prefs.js:125
+msgid "Remove"
+msgstr ""
+
+#: prefs.js:139
+msgid "Edit station"
+msgstr ""
+
+#: prefs.js:139
+msgid "Add station"
+msgstr ""
+
+#: prefs.js:140
+msgid "Use the address of the stream or of its playlist (.pls, .m3u)."
+msgstr ""
+
+#: prefs.js:143
+msgid "Name"
+msgstr ""
+
+#: prefs.js:145
+msgid "Address"
+msgstr ""
+
+#: prefs.js:154
+msgid "Cancel"
+msgstr ""
+
+#: prefs.js:155
+msgid "Save"
+msgstr ""
+
+#: prefs.js:200
+#, javascript-format
+msgid "“%s” removed"
+msgstr ""
+
+#: prefs.js:201
+msgid "Undo"
+msgstr ""
+
+#: prefs.js:214
+msgid "Find stations"
+msgstr ""
+
+#: prefs.js:215
+msgid ""
+"Search the free radio-browser.info directory, with more than 50,000 stations."
+msgstr ""
+
+#: prefs.js:218
+msgid "Station name"
+msgstr ""
+
+#: prefs.js:242 lib/indicator.js:434
+msgid "Searching…"
+msgstr ""
+
+#: prefs.js:250 lib/indicator.js:447
+msgid "No stations found"
+msgstr ""
+
+#: prefs.js:259 lib/indicator.js:454
+msgid "Could not reach radio-browser.info"
+msgstr ""
+
+#: prefs.js:260
+msgid "Check your internet connection and try again."
+msgstr ""
+
+#: prefs.js:272 prefs.js:279 lib/indicator.js:99 lib/indicator.js:148
+msgid "Add to favorites"
+msgstr ""
+
+#: prefs.js:279
+msgid "Already in favorites"
+msgstr ""
+
+#: prefs.js:289
+msgid "Backup"
+msgstr ""
+
+#: prefs.js:290
+msgid "Save your favorites to a file, or load them on another computer."
+msgstr ""
+
+#: prefs.js:293
+msgid "Export favorites"
+msgstr ""
+
+#: prefs.js:299
+msgid "Import favorites"
+msgstr ""
+
+#: prefs.js:300
+msgid "Stations already in your favorites are kept."
+msgstr ""
+
+#: prefs.js:310
+msgid "JSON files"
+msgstr ""
+
+#: prefs.js:329
+msgid "Favorites exported"
+msgstr ""
+
+#: prefs.js:345
+#, javascript-format
+msgid "%d stations imported"
+msgstr ""
+
+#: prefs.js:351
+msgid "Something went wrong with the file"
+msgstr ""
+
+#: prefs.js:358
+msgid "General"
+msgstr ""
+
+#: prefs.js:362
+msgid "Top bar"
+msgstr ""
+
+#: prefs.js:364
+msgid "Show the title next to the icon"
+msgstr ""
+
+#: prefs.js:365
+msgid "The song title, or the station name, while playing"
+msgstr ""
+
+#: prefs.js:366
+msgid "Notify song changes"
+msgstr ""
+
+#: prefs.js:367
+msgid "Show a notification when a new song starts"
+msgstr ""
+
+#: prefs.js:369
+msgid "none"
+msgstr ""
+
+#: prefs.js:371
+msgid "Popular stations"
+msgstr ""
+
+#: prefs.js:372
+#, javascript-format
+msgid ""
+"Country of the popular stations shown in “Discover stations”. Use a two-"
+"letter code such as ES, MX or AR. Leave it empty to use the country of your "
+"system language (%s)."
+msgstr ""
+
+#: prefs.js:377
+msgid "Country code"
+msgstr ""
+
+#: prefs.js:385
+msgid "About"
+msgstr ""
+
+#: prefs.js:387
+msgid "Station directory"
+msgstr ""
+
+#: prefs.js:388
+msgid "Source code and bug reports"
+msgstr ""
+
+#: lib/indicator.js:101
+msgid "Copy song title"
+msgstr ""
+
+#: lib/indicator.js:103
+msgid "Play or stop"
+msgstr ""
+
+#: lib/indicator.js:127
+msgid "No station selected"
+msgstr ""
+
+#: lib/indicator.js:133
+msgid "Connecting…"
+msgstr ""
+
+#: lib/indicator.js:135
+msgid "Playing"
+msgstr ""
+
+#: lib/indicator.js:137
+msgid "Stopped"
+msgstr ""
+
+#: lib/indicator.js:137
+msgid "Choose a station below"
+msgstr ""
+
+#: lib/indicator.js:148
+msgid "Remove from favorites"
+msgstr ""
+
+#: lib/indicator.js:169
+msgid "Volume"
+msgstr ""
+
+#: lib/indicator.js:311
+msgid "Discover stations"
+msgstr ""
+
+#: lib/indicator.js:317
+msgid "Preferences"
+msgstr ""
+
+#: lib/indicator.js:328
+msgid "Search by name…"
+msgstr ""
+
+#: lib/indicator.js:366
+msgid "No favorites yet. Play a station and press the star button to save it."
+msgstr ""
+
+#: lib/indicator.js:432
+msgid "Results"
+msgstr ""
+
+#: lib/indicator.js:433
+#, javascript-format
+msgid "Popular stations (%s)"
+msgstr ""
+
+#: lib/indicator.js:433
+msgid "worldwide"
+msgstr ""
+
+#: lib/player.js:107
+msgid "Could not open the station address"
+msgstr ""
+
+#: lib/player.js:116
+msgid "GStreamer is not available"
+msgstr ""
+
+#: lib/player.js:122 lib/player.js:200
+msgid "Could not play this station"
+msgstr ""
+
+#: lib/player.js:204
+msgid "The station stopped broadcasting"
+msgstr ""

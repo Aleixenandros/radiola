@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="radiola">
+  <schema id="org.gnome.shell.extensions.radiola"
+          path="/org/gnome/shell/extensions/radiola/">
+
+    <key name="stations" type="s">
+      <default>'[]'</default>
+      <summary>Favorite stations</summary>
+      <description>JSON array of objects with "name", "url" and optionally "uuid" (radio-browser.info id) and "favicon".</description>
+    </key>
+    <key name="last-station" type="s">
+      <default>''</default>
+      <summary>Last station played (JSON object)</summary>
+    </key>
+    <key name="volume" type="d">
+      <range min="0" max="1"/>
+      <default>0.6</default>
+      <summary>Playback volume</summary>
+    </key>
+    <key name="show-title-in-panel" type="b">
+      <default>false</default>
+      <summary>Show the station or song title next to the panel icon</summary>
+    </key>
+    <key name="notify-title-change" type="b">
+      <default>false</default>
+      <summary>Show a notification when the song changes</summary>
+    </key>
+    <key name="country-code" type="s">
+      <default>''</default>
+      <summary>Country for popular stations (ISO code such as ES). Empty means the system language country.</summary>
+    </key>
+  </schema>
+</schemalist>
