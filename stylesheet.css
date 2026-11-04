@@ -14,9 +14,11 @@
   margin-left: 4px;
 }
 
-/* Menu */
+/* Menu. The maximum keeps long help texts and station names from
+ * making it as wide as the screen: they wrap or are cut with an ellipsis. */
 .radiola-menu {
   min-width: 22em;
+  max-width: 26em;
 }
 
 /* Station names from the directory can be very long. */
@@ -64,6 +66,11 @@
 }
 
 .radiola-favorites {
+  max-height: 22em;
+}
+
+/* Results of "Discover stations"; the list scrolls past this height. */
+.radiola-results {
   max-height: 22em;
 }
 
