@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: radiola@aleixenandros.me\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-04 19:12+0100\n"
+"POT-Creation-Date: 2026-11-04 21:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,190 +17,235 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: prefs.js:71
+#: prefs.js:98
 msgid "Stations"
 msgstr ""
 
-#: prefs.js:82 lib/indicator.js:294
+#: prefs.js:110 lib/indicator.js:311
 msgid "Favorites"
 msgstr ""
 
-#: prefs.js:83
+#: prefs.js:111
 msgid "Shown in the top bar menu in this order."
 msgstr ""
 
-#: prefs.js:85
-msgid "Add a station by address"
-msgstr ""
-
-#: prefs.js:103
-msgid "No favorites yet"
-msgstr ""
-
-#: prefs.js:104
-msgid "Search below, or add a station by its address with +."
-msgstr ""
-
-#: prefs.js:116
-msgid "Move up"
-msgstr ""
-
-#: prefs.js:118
-msgid "Move down"
-msgstr ""
-
-#: prefs.js:123
-msgid "Edit"
+#: prefs.js:124
+msgid "Custom stations"
 msgstr ""
 
 #: prefs.js:125
-msgid "Remove"
+msgid ""
+"Stations that are not in the directory: add the address of the stream, a "
+"name and, if you like, a logo. They are shown in the menu below the "
+"favorites."
 msgstr ""
 
-#: prefs.js:139
-msgid "Edit station"
+#: prefs.js:127
+msgid "Add a custom station"
 msgstr ""
 
-#: prefs.js:139
-msgid "Add station"
+#: prefs.js:149
+msgid "No favorites yet"
 msgstr ""
 
-#: prefs.js:140
-msgid "Use the address of the stream or of its playlist (.pls, .m3u)."
+#: prefs.js:150
+msgid ""
+"Press the star button while a station plays, or add one from the search "
+"below."
 msgstr ""
 
-#: prefs.js:143
-msgid "Name"
-msgstr ""
-
-#: prefs.js:145
-msgid "Address"
+#: prefs.js:153
+msgid "No custom stations yet"
 msgstr ""
 
 #: prefs.js:154
+msgid "Press + to add one."
+msgstr ""
+
+#: prefs.js:167
+msgid "Move up"
+msgstr ""
+
+#: prefs.js:170
+msgid "Move down"
+msgstr ""
+
+#: prefs.js:176
+msgid "Edit"
+msgstr ""
+
+#: prefs.js:178
+msgid "Remove"
+msgstr ""
+
+#: prefs.js:203
+msgid ""
+"Use the address of the stream or of its playlist (.pls, .m3u). The logo is "
+"optional: an image from your files or its web address."
+msgstr ""
+
+#: prefs.js:206
+msgid "Name"
+msgstr ""
+
+#: prefs.js:208
+msgid "Stream address"
+msgstr ""
+
+#: prefs.js:213
+msgid "Logo (optional)"
+msgstr ""
+
+#: prefs.js:218
+msgid "Choose an image"
+msgstr ""
+
+#: prefs.js:230
 msgid "Cancel"
 msgstr ""
 
-#: prefs.js:155
+#: prefs.js:231
 msgid "Save"
 msgstr ""
 
-#: prefs.js:200
+#: prefs.js:296
+msgid "Images"
+msgstr ""
+
+#: prefs.js:301
+msgid "Choose a logo"
+msgstr ""
+
+#: prefs.js:306
+msgid "Add custom station"
+msgstr ""
+
+#: prefs.js:312
+msgid "That station is already in your custom stations"
+msgstr ""
+
+#: prefs.js:324
+msgid "Edit station"
+msgstr ""
+
+#: prefs.js:341
 #, javascript-format
 msgid "“%s” removed"
 msgstr ""
 
-#: prefs.js:201
+#: prefs.js:342
 msgid "Undo"
 msgstr ""
 
-#: prefs.js:214
+#: prefs.js:355
 msgid "Find stations"
 msgstr ""
 
-#: prefs.js:215
+#: prefs.js:356
 msgid ""
 "Search the free radio-browser.info directory, with more than 50,000 stations."
 msgstr ""
 
-#: prefs.js:218
+#: prefs.js:359
 msgid "Station name"
 msgstr ""
 
-#: prefs.js:242 lib/indicator.js:434
+#: prefs.js:383 lib/indicator.js:473
 msgid "Searching…"
 msgstr ""
 
-#: prefs.js:250 lib/indicator.js:447
+#: prefs.js:391 lib/indicator.js:486
 msgid "No stations found"
 msgstr ""
 
-#: prefs.js:259 lib/indicator.js:454
+#: prefs.js:400 lib/indicator.js:493
 msgid "Could not reach radio-browser.info"
 msgstr ""
 
-#: prefs.js:260
+#: prefs.js:401
 msgid "Check your internet connection and try again."
 msgstr ""
 
-#: prefs.js:272 prefs.js:279 lib/indicator.js:99 lib/indicator.js:148
+#: prefs.js:413 prefs.js:420 lib/indicator.js:115 lib/indicator.js:164
 msgid "Add to favorites"
 msgstr ""
 
-#: prefs.js:279
+#: prefs.js:420
 msgid "Already in favorites"
 msgstr ""
 
-#: prefs.js:289
+#: prefs.js:430
 msgid "Backup"
 msgstr ""
 
-#: prefs.js:290
-msgid "Save your favorites to a file, or load them on another computer."
+#: prefs.js:431
+msgid ""
+"Save your favorites and custom stations to a file, or load them on another "
+"computer. Logos chosen from your files stay on this computer."
 msgstr ""
 
-#: prefs.js:293
-msgid "Export favorites"
+#: prefs.js:434
+msgid "Export stations"
 msgstr ""
 
-#: prefs.js:299
-msgid "Import favorites"
+#: prefs.js:440
+msgid "Import stations"
 msgstr ""
 
-#: prefs.js:300
-msgid "Stations already in your favorites are kept."
+#: prefs.js:441
+msgid "Stations you already have are kept."
 msgstr ""
 
-#: prefs.js:310
+#: prefs.js:451
 msgid "JSON files"
 msgstr ""
 
-#: prefs.js:329
-msgid "Favorites exported"
+#: prefs.js:471
+msgid "Stations exported"
 msgstr ""
 
-#: prefs.js:345
+#: prefs.js:492
 #, javascript-format
 msgid "%d stations imported"
 msgstr ""
 
-#: prefs.js:351
+#: prefs.js:498
 msgid "Something went wrong with the file"
 msgstr ""
 
-#: prefs.js:358
+#: prefs.js:505
 msgid "General"
 msgstr ""
 
-#: prefs.js:362
+#: prefs.js:509
 msgid "Top bar"
 msgstr ""
 
-#: prefs.js:364
+#: prefs.js:511
 msgid "Show the title next to the icon"
 msgstr ""
 
-#: prefs.js:365
+#: prefs.js:512
 msgid "The song title, or the station name, while playing"
 msgstr ""
 
-#: prefs.js:366
+#: prefs.js:513
 msgid "Notify song changes"
 msgstr ""
 
-#: prefs.js:367
+#: prefs.js:514
 msgid "Show a notification when a new song starts"
 msgstr ""
 
-#: prefs.js:369
+#: prefs.js:516
 msgid "none"
 msgstr ""
 
-#: prefs.js:371
+#: prefs.js:518
 msgid "Popular stations"
 msgstr ""
 
-#: prefs.js:372
+#: prefs.js:519
 #, javascript-format
 msgid ""
 "Country of the popular stations shown in “Discover stations”. Use a two-"
@@ -208,99 +253,103 @@ msgid ""
 "system language (%s)."
 msgstr ""
 
-#: prefs.js:377
+#: prefs.js:524
 msgid "Country code"
 msgstr ""
 
-#: prefs.js:385
+#: prefs.js:532
 msgid "About"
 msgstr ""
 
-#: prefs.js:387
+#: prefs.js:534
 msgid "Station directory"
 msgstr ""
 
-#: prefs.js:388
+#: prefs.js:535
 msgid "Source code and bug reports"
 msgstr ""
 
-#: lib/indicator.js:101
+#: lib/indicator.js:117
 msgid "Copy song title"
 msgstr ""
 
-#: lib/indicator.js:103
+#: lib/indicator.js:119
 msgid "Play or stop"
 msgstr ""
 
-#: lib/indicator.js:127
+#: lib/indicator.js:143
 msgid "No station selected"
 msgstr ""
 
-#: lib/indicator.js:133
+#: lib/indicator.js:149
 msgid "Connecting…"
 msgstr ""
 
-#: lib/indicator.js:135
+#: lib/indicator.js:151
 msgid "Playing"
 msgstr ""
 
-#: lib/indicator.js:137
+#: lib/indicator.js:153
 msgid "Stopped"
 msgstr ""
 
-#: lib/indicator.js:137
+#: lib/indicator.js:153
 msgid "Choose a station below"
 msgstr ""
 
-#: lib/indicator.js:148
+#: lib/indicator.js:164
 msgid "Remove from favorites"
 msgstr ""
 
-#: lib/indicator.js:169
+#: lib/indicator.js:185
 msgid "Volume"
 msgstr ""
 
-#: lib/indicator.js:311
+#: lib/indicator.js:328
 msgid "Discover stations"
 msgstr ""
 
-#: lib/indicator.js:317
+#: lib/indicator.js:334
 msgid "Preferences"
 msgstr ""
 
-#: lib/indicator.js:328
+#: lib/indicator.js:345
 msgid "Search by name…"
 msgstr ""
 
-#: lib/indicator.js:366
+#: lib/indicator.js:395
 msgid "No favorites yet. Play a station and press the star button to save it."
 msgstr ""
 
-#: lib/indicator.js:432
+#: lib/indicator.js:404
+msgid "Custom"
+msgstr ""
+
+#: lib/indicator.js:471
 msgid "Results"
 msgstr ""
 
-#: lib/indicator.js:433
+#: lib/indicator.js:472
 #, javascript-format
 msgid "Popular stations (%s)"
 msgstr ""
 
-#: lib/indicator.js:433
+#: lib/indicator.js:472
 msgid "worldwide"
 msgstr ""
 
-#: lib/player.js:107
+#: lib/player.js:126
 msgid "Could not open the station address"
 msgstr ""
 
-#: lib/player.js:116
-msgid "GStreamer is not available"
-msgstr ""
-
-#: lib/player.js:122 lib/player.js:200
+#: lib/player.js:136 lib/player.js:220 lib/player.js:336
 msgid "Could not play this station"
 msgstr ""
 
-#: lib/player.js:204
+#: lib/player.js:339
 msgid "The station stopped broadcasting"
+msgstr ""
+
+#: lib/player.js:342
+msgid "GStreamer is not available"
 msgstr ""

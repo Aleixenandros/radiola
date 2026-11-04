@@ -7,17 +7,21 @@ Radio por internet en la barra superior de GNOME.
 - **Más de 50 000 emisoras de todo el mundo** gracias al directorio libre
   [radio-browser.info](https://www.radio-browser.info): búscalas por nombre
   o mira las más populares de tu país.
-- **Favoritas**: guárdalas con la estrella, ordénalas, edítalas o añade
-  cualquier emisora por su dirección (también listas `.pls` y `.m3u`).
+- **Favoritas**: guárdalas con la estrella, ordénalas y edítalas.
+- **Emisoras personalizadas** para las que no están en el directorio:
+  dirección del stream (también listas `.pls` y `.m3u`), nombre y logo
+  opcional, ya sea una imagen de tus archivos o su dirección web. Tienen
+  su propia sección en el menú.
 - **Título de la canción** que está sonando, con opción de verlo en la
   barra superior, copiarlo o recibir una notificación cuando cambia.
 - **Teclas multimedia y controles estándar (MPRIS)**: funciona con las
   teclas de tu teclado, con los controles multimedia de GNOME y con otras
   extensiones como [Unified Panel](https://github.com/Aleixenandros/unified-panel).
-  Siguiente y anterior cambian entre tus favoritas.
+  Siguiente y anterior recorren tus favoritas y emisoras personalizadas.
 - **Sigue sonando con la pantalla bloqueada**. El menú no se muestra en la
   pantalla de bloqueo.
-- Copia de seguridad: exporta e importa tus favoritas en JSON.
+- Copia de seguridad: exporta e importa tus favoritas y emisoras
+  personalizadas en JSON.
 
 Compatible con **GNOME Shell 51**.
 
@@ -147,6 +151,7 @@ lib/indicator.js      botón de la barra superior y su menú
 lib/radioBrowser.js   cliente de radio-browser.info
 lib/stations.js       favoritas guardadas en GSettings
 lib/favicons.js       caché de logos en ~/.cache/radiola
+lib/logos.js          logos elegidos por el usuario, copiados en ~/.local/share/radiola/logos
 lib/http.js           utilidades HTTP (libsoup 3) y listas .pls/.m3u
 icons/                icono de la extensión
 schemas/              esquema GSettings (todas las opciones)

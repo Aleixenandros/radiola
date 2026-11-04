@@ -7,17 +7,20 @@ Internet radio in the GNOME top bar.
 - **More than 50,000 stations worldwide** from the free
   [radio-browser.info](https://www.radio-browser.info) directory: search by
   name or browse the most popular ones in your country.
-- **Favorites**: save them with the star, reorder, edit, or add any station
-  by its address (`.pls` and `.m3u` playlists work too).
+- **Favorites**: save them with the star, reorder and edit them.
+- **Custom stations** for those that are not in the directory: stream
+  address (`.pls` and `.m3u` playlists work too), name and an optional
+  logo, either an image from your files or its web address. They have
+  their own section in the menu.
 - **Song title** of what is playing, optionally shown in the top bar, ready
   to copy, or announced with a notification when it changes.
 - **Media keys and standard controls (MPRIS)**: works with your keyboard's
   media keys, GNOME's media controls and other extensions such as
   [Unified Panel](https://github.com/Aleixenandros/unified-panel).
-  Next and previous move through your favorites.
+  Next and previous go through your favorites and custom stations.
 - **Keeps playing while the screen is locked**. The menu is not shown on
   the lock screen.
-- Backup: export and import your favorites as JSON.
+- Backup: export and import your favorites and custom stations as JSON.
 
 Supported: **GNOME Shell 51**.
 
@@ -147,6 +150,7 @@ lib/indicator.js     top bar button and its menu
 lib/radioBrowser.js  radio-browser.info client
 lib/stations.js      favorites stored in GSettings
 lib/favicons.js      logo cache in ~/.cache/radiola
+lib/logos.js         logos chosen by the user, copied to ~/.local/share/radiola/logos
 lib/http.js          HTTP helpers (libsoup 3) and .pls/.m3u playlists
 icons/               extension icon
 schemas/             GSettings schema (all options)

@@ -1,15 +1,18 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 import Adw from 'gi://Adw';
+import Gdk from 'gi://Gdk?version=4.0';
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import Gtk from 'gi://Gtk';
 
 import {ExtensionPreferences, gettext as _} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
+import {FaviconCache} from './lib/favicons.js';
 import {isCancelled} from './lib/http.js';
+import {MAX_LOGO_SIZE, copyLogo, localLogoFile} from './lib/logos.js';
 import {RadioBrowser, localCountryCode} from './lib/radioBrowser.js';
-import {StationStore, cleanStation, parseStations} from './lib/stations.js';
+import {StationStore, cleanStation, parseBackup, sameStation} from './lib/stations.js';
 
 Gio._promisify(Adw.AlertDialog.prototype, 'choose');
 Gio._promisify(Gtk.FileDialog.prototype, 'open');
@@ -45,18 +48,42 @@ function stationDetails(station) {
     return parts.filter(Boolean).join(' · ');
 }
 
+/** What the logo field shows for a stored logo: a path or a web address. */
+function logoText(favicon) {
+    return favicon?.startsWith('file://') ? Gio.File.new_for_uri(favicon).get_path() : favicon ?? '';
+}
+
+/**
+ * @param {Gio.File} file
+ * @returns {Gdk.Texture|null} the image, or null if it is not a usable one
+ */
+function loadLogo(file) {
+    try {
+        const info = file.query_info('standard::size', Gio.FileQueryInfoFlags.NONE, null);
+        return info.get_size() > MAX_LOGO_SIZE ? null : Gdk.Texture.new_from_file(file);
+    } catch {
+        return null;
+    }
+}
+
 export default class RadiolaPreferences extends ExtensionPreferences {
     fillPreferencesWindow(window) {
         this._window = window;
         this._settings = this.getSettings();
         this._store = new StationStore(this._settings);
-        this._browser = new RadioBrowser(
-            `Radiola/${this.metadata['version-name']} (+${this.metadata.url})`);
+        const userAgent = `Radiola/${this.metadata['version-name']} (+${this.metadata.url})`;
+        this._browser = new RadioBrowser(userAgent);
+        // Only to show logos already on disk; prefs never downloads them.
+        this._favicons = new FaviconCache(userAgent);
+        this._fallbackIcon = new Gio.FileIcon({
+            file: this.dir.resolve_relative_path('icons/radiola-symbolic.svg'),
+        });
 
-        window.set_default_size(680, 780);
+        window.set_default_size(680, 820);
         window.connect('close-request', () => {
             this._cancellable?.cancel();
             this._browser.destroy();
+            this._favicons.destroy();
             return false;
         });
 
@@ -72,6 +99,7 @@ export default class RadiolaPreferences extends ExtensionPreferences {
             icon_name: 'starred-symbolic',
         });
         page.add(this._buildFavoritesGroup());
+        page.add(this._buildCustomGroup());
         page.add(this._buildSearchGroup());
         page.add(this._buildBackupGroup());
         return page;
@@ -82,73 +110,121 @@ export default class RadiolaPreferences extends ExtensionPreferences {
             title: _('Favorites'),
             description: _('Shown in the top bar menu in this order.'),
         });
-        group.set_header_suffix(flatButton('list-add-symbolic', _('Add a station by address'),
-            () => this._addStation()));
 
         this._favoritesList = boxedList();
         group.add(this._favoritesList);
 
-        this._settings.connect('changed::stations', () => this._rebuildFavorites());
-        this._rebuildFavorites();
+        this._settings.connect('changed::stations', () => this._rebuildList('favorites'));
+        this._rebuildList('favorites');
         return group;
     }
 
-    _rebuildFavorites() {
-        const list = this._favoritesList;
+    _buildCustomGroup() {
+        const group = new Adw.PreferencesGroup({
+            title: _('Custom stations'),
+            description: _('Stations that are not in the directory: add the address of the stream, a name and, if you like, a logo. They are shown in the menu below the favorites.'),
+        });
+        group.set_header_suffix(flatButton('list-add-symbolic', _('Add a custom station'),
+            () => this._addCustom().catch(e => this._toastError(e))));
+
+        this._customList = boxedList();
+        group.add(this._customList);
+
+        this._settings.connect('changed::custom-stations', () => this._rebuildList('custom'));
+        this._rebuildList('custom');
+        return group;
+    }
+
+    /**
+     * @param {string} name 'favorites' or 'custom'
+     */
+    _rebuildList(name) {
+        const list = name === 'favorites' ? this._favoritesList : this._customList;
         list.remove_all();
 
-        const favorites = this._store.favorites;
-        if (favorites.length === 0) {
-            list.append(new Adw.ActionRow({
-                title: _('No favorites yet'),
-                subtitle: _('Search below, or add a station by its address with +.'),
-            }));
+        const stations = this._store.getList(name);
+        if (stations.length === 0) {
+            list.append(name === 'favorites'
+                ? new Adw.ActionRow({
+                    title: _('No favorites yet'),
+                    subtitle: _('Press the star button while a station plays, or add one from the search below.'),
+                })
+                : new Adw.ActionRow({
+                    title: _('No custom stations yet'),
+                    subtitle: _('Press + to add one.'),
+                }));
         }
 
-        favorites.forEach((station, index) => {
+        stations.forEach((station, index) => {
             const row = new Adw.ActionRow({
                 title: station.name,
                 subtitle: station.url,
                 subtitle_lines: 1,
                 use_markup: false,
             });
+            row.add_prefix(this._logoImage(station));
 
-            const up = flatButton('go-up-symbolic', _('Move up'), () => this._store.move(index, -1));
+            const up = flatButton('go-up-symbolic', _('Move up'),
+                () => this._store.move(name, index, -1));
             up.sensitive = index > 0;
-            const down = flatButton('go-down-symbolic', _('Move down'), () => this._store.move(index, 1));
-            down.sensitive = index < favorites.length - 1;
+            const down = flatButton('go-down-symbolic', _('Move down'),
+                () => this._store.move(name, index, 1));
+            down.sensitive = index < stations.length - 1;
 
             row.add_suffix(up);
             row.add_suffix(down);
             row.add_suffix(flatButton('document-edit-symbolic', _('Edit'),
-                () => this._editStation(index)));
+                () => this._editStation(name, index).catch(e => this._toastError(e))));
             row.add_suffix(flatButton('user-trash-symbolic', _('Remove'),
-                () => this._removeStation(index)));
+                () => this._removeStation(name, index)));
             list.append(row);
         });
     }
 
+    /** The station logo if it is on disk (chosen by the user or cached). */
+    _logoImage(station) {
+        const file = this._favicons.lookup(station.favicon);
+        const texture = file ? loadLogo(file) : null;
+        return texture
+            ? new Gtk.Image({paintable: texture, pixel_size: 32})
+            : new Gtk.Image({gicon: this._fallbackIcon, pixel_size: 32});
+    }
+
     /**
-     * Ask for a station name and address.
+     * Ask for the name, address and logo of a station.
      *
      * @param {object|null} station the station to edit, or null to add one
+     * @param {string} heading title of the dialog
      * @returns {Promise<object|null>} the cleaned station, or null if cancelled
      */
-    async _askStation(station) {
+    async _askStation(station, heading) {
         const dialog = new Adw.AlertDialog({
-            heading: station ? _('Edit station') : _('Add station'),
-            body: _('Use the address of the stream or of its playlist (.pls, .m3u).'),
+            heading,
+            body: _('Use the address of the stream or of its playlist (.pls, .m3u). The logo is optional: an image from your files or its web address.'),
         });
 
         const nameRow = new Adw.EntryRow({title: _('Name'), text: station?.name ?? ''});
         const urlRow = new Adw.EntryRow({
-            title: _('Address'),
+            title: _('Stream address'),
             text: station?.url ?? '',
             input_purpose: Gtk.InputPurpose.URL,
         });
+        const logoRow = new Adw.EntryRow({
+            title: _('Logo (optional)'),
+            text: logoText(station?.favicon),
+        });
+        const preview = new Gtk.Image({pixel_size: 32});
+        logoRow.add_prefix(preview);
+        logoRow.add_suffix(flatButton('document-open-symbolic', _('Choose an image'), async () => {
+            const file = await this._chooseImage();
+            if (file)
+                logoRow.text = file.get_path();
+        }));
+
         const fields = boxedList();
         fields.append(nameRow);
         fields.append(urlRow);
+        fields.append(logoRow);
         dialog.set_extra_child(fields);
 
         dialog.add_response('cancel', _('Cancel'));
@@ -157,44 +233,109 @@ export default class RadiolaPreferences extends ExtensionPreferences {
         dialog.set_default_response('save');
         dialog.set_close_response('cancel');
 
+        // The logo field holds nothing, a web address or an image file.
+        // Images are decoded once per path, not on every key press.
+        const textures = new Map();
+        const readLogo = () => {
+            const text = logoRow.text.trim();
+            if (!text)
+                return {valid: true};
+            if (/^https?:\/\/\S+$/i.test(text)) {
+                const cached = this._favicons.lookup(text);
+                return {valid: true, url: text, texture: cached ? loadLogo(cached) : null};
+            }
+            const file = localLogoFile(text);
+            if (!file)
+                return {valid: false};
+            const path = file.get_path();
+            if (!textures.has(path))
+                textures.set(path, loadLogo(file));
+            const texture = textures.get(path);
+            return texture ? {valid: true, file, texture} : {valid: false};
+        };
+
         const read = () => {
             const url = urlRow.text.trim();
-            const keepIds = station && url === station.url;
+            const keepId = station && url === station.url;
             return cleanStation({
                 name: nameRow.text,
                 url,
-                uuid: keepIds ? station.uuid : undefined,
-                favicon: keepIds ? station.favicon : undefined,
+                uuid: keepId ? station.uuid : undefined,
             });
         };
-        const validate = () => dialog.set_response_enabled('save', read() !== null);
-        nameRow.connect('changed', validate);
-        urlRow.connect('changed', validate);
+
+        const validate = () => {
+            const logo = readLogo();
+            if (logo.texture)
+                preview.set_from_paintable(logo.texture);
+            else
+                preview.icon_name = logo.valid ? 'image-x-generic-symbolic' : 'dialog-warning-symbolic';
+
+            if (logo.valid)
+                logoRow.remove_css_class('error');
+            else
+                logoRow.add_css_class('error');
+            dialog.set_response_enabled('save', logo.valid && read() !== null);
+        };
+        for (const row of [nameRow, urlRow, logoRow])
+            row.connect('changed', validate);
         validate();
 
         const response = await dialog.choose(this._window, null);
-        return response === 'save' ? read() : null;
+        if (response !== 'save')
+            return null;
+
+        // Images from the user's files are copied, so they keep working.
+        const logo = readLogo();
+        const favicon = logo.file ? await copyLogo(logo.file) : logo.url;
+        return cleanStation({...read(), favicon});
     }
 
-    async _addStation() {
-        const station = await this._askStation(null);
-        if (station)
-            this._store.add(station);
+    /** @returns {Promise<Gio.File|null>} the image chosen, if any */
+    _chooseImage() {
+        const filter = new Gtk.FileFilter({name: _('Images')});
+        filter.add_pixbuf_formats();
+        const filters = new Gio.ListStore({item_type: Gtk.FileFilter});
+        filters.append(filter);
+
+        const dialog = new Gtk.FileDialog({title: _('Choose a logo'), filters});
+        return dialog.open(this._window, null).catch(() => null);
     }
 
-    async _editStation(index) {
-        const favorites = this._store.favorites;
-        const edited = await this._askStation(favorites[index]);
+    async _addCustom() {
+        const station = await this._askStation(null, _('Add custom station'));
+        if (!station)
+            return;
+
+        const custom = this._store.custom;
+        if (custom.some(s => sameStation(s, station))) {
+            this._window.add_toast(new Adw.Toast({title: _('That station is already in your custom stations')}));
+            return;
+        }
+        this._store.custom = [...custom, station];
+    }
+
+    /**
+     * @param {string} name 'favorites' or 'custom'
+     * @param {number} index
+     */
+    async _editStation(name, index) {
+        const stations = this._store.getList(name);
+        const edited = await this._askStation(stations[index], _('Edit station'));
         if (!edited)
             return;
-        favorites[index] = edited;
-        this._store.favorites = favorites;
+        stations[index] = edited;
+        this._store.setList(name, stations);
     }
 
-    _removeStation(index) {
-        const before = this._store.favorites;
+    /**
+     * @param {string} name 'favorites' or 'custom'
+     * @param {number} index
+     */
+    _removeStation(name, index) {
+        const before = this._store.getList(name);
         const [removed] = before.splice(index, 1);
-        this._store.favorites = before;
+        this._store.setList(name, before);
 
         const toast = new Adw.Toast({
             title: _('“%s” removed').replace('%s', removed.name),
@@ -202,9 +343,9 @@ export default class RadiolaPreferences extends ExtensionPreferences {
             use_markup: false,
         });
         toast.connect('button-clicked', () => {
-            const list = this._store.favorites;
+            const list = this._store.getList(name);
             list.splice(index, 0, removed);
-            this._store.favorites = list;
+            this._store.setList(name, list);
         });
         this._window.add_toast(toast);
     }
@@ -287,17 +428,17 @@ export default class RadiolaPreferences extends ExtensionPreferences {
     _buildBackupGroup() {
         const group = new Adw.PreferencesGroup({
             title: _('Backup'),
-            description: _('Save your favorites to a file, or load them on another computer.'),
+            description: _('Save your favorites and custom stations to a file, or load them on another computer. Logos chosen from your files stay on this computer.'),
         });
 
-        const exportRow = new Adw.ActionRow({title: _('Export favorites'), activatable: true});
+        const exportRow = new Adw.ActionRow({title: _('Export stations'), activatable: true});
         exportRow.add_suffix(new Gtk.Image({icon_name: 'document-save-symbolic'}));
         exportRow.connect('activated', () => this._export().catch(e => this._toastError(e)));
         group.add(exportRow);
 
         const importRow = new Adw.ActionRow({
-            title: _('Import favorites'),
-            subtitle: _('Stations already in your favorites are kept.'),
+            title: _('Import stations'),
+            subtitle: _('Stations you already have are kept.'),
             activatable: true,
         });
         importRow.add_suffix(new Gtk.Image({icon_name: 'document-open-symbolic'}));
@@ -323,10 +464,11 @@ export default class RadiolaPreferences extends ExtensionPreferences {
         if (!file)
             return;
 
-        const json = JSON.stringify(this._store.favorites, null, 2);
+        const backup = {favorites: this._store.favorites, custom: this._store.custom};
+        const json = JSON.stringify(backup, null, 2);
         await file.replace_contents_bytes_async(new GLib.Bytes(new TextEncoder().encode(json)),
             null, false, Gio.FileCreateFlags.REPLACE_DESTINATION, null);
-        this._window.add_toast(new Adw.Toast({title: _('Favorites exported')}));
+        this._window.add_toast(new Adw.Toast({title: _('Stations exported')}));
     }
 
     async _import() {
@@ -336,13 +478,18 @@ export default class RadiolaPreferences extends ExtensionPreferences {
             return;
 
         const [contents] = await file.load_contents_async(null);
-        const imported = parseStations(new TextDecoder().decode(contents));
-        const before = this._store.favorites.length;
-        imported.forEach(station => this._store.add(station));
-        const added = this._store.favorites.length - before;
+        const backup = parseBackup(new TextDecoder().decode(contents));
+        const count = () => this._store.favorites.length + this._store.custom.length;
+        const before = count();
+
+        backup.favorites.forEach(station => this._store.add(station));
+        const custom = this._store.custom;
+        const newCustom = backup.custom.filter(s => !custom.some(c => sameStation(c, s)));
+        if (newCustom.length > 0)
+            this._store.custom = [...custom, ...newCustom];
 
         this._window.add_toast(new Adw.Toast({
-            title: _('%d stations imported').replace('%d', String(added)),
+            title: _('%d stations imported').replace('%d', String(count() - before)),
         }));
     }
 

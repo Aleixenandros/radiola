@@ -3,7 +3,7 @@
 // Radiola: internet radio in the GNOME top bar.
 //
 // This class is the "controller" shared by the panel menu and the MPRIS
-// server: it owns the player, the favorites and the radio-browser client.
+// server: it owns the player, the station lists and the radio-browser client.
 
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
@@ -91,11 +91,11 @@ export default class RadiolaExtension extends Extension {
             this.store.toggle(this.player.station);
     }
 
-    /** Whether next/previous can move to another favorite. */
+    /** Whether next/previous can move to another favorite or custom station. */
     get canSkip() {
-        const favorites = this.store.favorites;
-        return favorites.length > 1 ||
-            (favorites.length === 1 && !sameStation(favorites[0], this.player.station));
+        const playlist = this.store.playlist;
+        return playlist.length > 1 ||
+            (playlist.length === 1 && !sameStation(playlist[0], this.player.station));
     }
 
     next() {
@@ -107,15 +107,15 @@ export default class RadiolaExtension extends Extension {
     }
 
     _skip(delta) {
-        const favorites = this.store.favorites;
-        if (favorites.length === 0)
+        const playlist = this.store.playlist;
+        if (playlist.length === 0)
             return;
 
-        const index = favorites.findIndex(s => sameStation(s, this.player.station));
+        const index = playlist.findIndex(s => sameStation(s, this.player.station));
         const target = index < 0
-            ? (delta > 0 ? 0 : favorites.length - 1)
-            : (index + delta + favorites.length) % favorites.length;
-        this.playStation(favorites[target]);
+            ? (delta > 0 ? 0 : playlist.length - 1)
+            : (index + delta + playlist.length) % playlist.length;
+        this.playStation(playlist[target]);
     }
 
     setVolume(value) {

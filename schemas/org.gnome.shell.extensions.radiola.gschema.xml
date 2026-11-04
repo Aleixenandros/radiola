@@ -8,6 +8,11 @@
       <summary>Favorite stations</summary>
       <description>JSON array of objects with "name", "url" and optionally "uuid" (radio-browser.info id) and "favicon".</description>
     </key>
+    <key name="custom-stations" type="s">
+      <default>'[]'</default>
+      <summary>Custom stations added by hand</summary>
+      <description>JSON array of objects with "name", "url" and optionally "favicon" (web address or file:// URI of the logo).</description>
+    </key>
     <key name="last-station" type="s">
       <default>''</default>
       <summary>Last station played (JSON object)</summary>
