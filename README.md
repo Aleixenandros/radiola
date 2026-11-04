@@ -85,8 +85,8 @@ Si prefieres `make`, existen los mismos atajos (`make install`, `make pack`…).
 
 ### Requisitos
 
-GStreamer con los complementos habituales para MP3 y AAC. En Fedora y en
-la mayoría de distribuciones ya vienen instalados con GNOME.
+GStreamer con los complementos habituales para MP3 y AAC, y `gjs`. En
+Fedora y en la mayoría de distribuciones ya vienen instalados con GNOME.
 
 ### Desinstalar
 
@@ -140,7 +140,8 @@ solo controlamos `version-name`.
 ```
 extension.js          controlador: une reproductor, menú, MPRIS y notificaciones
 prefs.js              ventana de preferencias (libadwaita)
-lib/player.js         reproductor (GStreamer playbin)
+lib/player.js         reproductor: controla el proceso de reproducción
+lib/playerHelper.js   proceso de reproducción (GStreamer playbin), fuera de GNOME Shell
 lib/mpris.js          servidor MPRIS en D-Bus
 lib/indicator.js      botón de la barra superior y su menú
 lib/radioBrowser.js   cliente de radio-browser.info
@@ -165,6 +166,13 @@ build.sh              compilar, instalar, traducir (lo usa también el Makefile)
   bloqueo. Para que la música no se corte, `disable()` «aparca» el
   reproductor si está sonando y el `enable()` inmediato lo recupera; si no
   llega ningún `enable()` en un segundo, se destruye (ver `extension.js`).
+- **GStreamer nunca se carga dentro de GNOME Shell.** `lib/player.js`
+  lanza `lib/playerHelper.js` con `gjs -m` al reproducir y le habla por
+  stdin/stdout (una línea JSON por mensaje). El primer `Gst.init()` de
+  cada arranque reescanea plugins que dependen de `/dev/dri` (Vulkan,
+  VA-API); el escáner se conecta al servidor Wayland, que dentro de la
+  shell es la propia shell bloqueada esperándolo: la sesión se congela
+  al iniciar. No importes `gi://Gst` en ningún módulo que cargue la shell.
 - **radio-browser.info** pide identificarse con un User-Agent y avisar de
   cada reproducción (`/json/url/<id>`). El cliente reparte las peticiones
   entre varios espejos y reintenta si alguno falla.
