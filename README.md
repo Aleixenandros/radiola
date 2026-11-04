@@ -180,8 +180,10 @@ build.sh              compilar, instalar, traducir (lo usa también el Makefile)
   shell es la propia shell bloqueada esperándolo: la sesión se congela
   al iniciar. No importes `gi://Gst` en ningún módulo que cargue la shell.
 - **radio-browser.info** pide identificarse con un User-Agent y avisar de
-  cada reproducción (`/json/url/<id>`). El cliente reparte las peticiones
-  entre varios espejos y reintenta si alguno falla.
+  cada reproducción (`/json/url/<id>`). Radiola solo avisa si el usuario
+  activa «Ayudar a ordenar el directorio» en las preferencias (desactivado
+  por defecto). El cliente reparte las peticiones entre varios espejos y
+  reintenta si alguno falla.
 
 Pautas:
 - JavaScript moderno sin compilar (módulos ES), siguiendo el estilo de código
@@ -200,4 +202,4 @@ Directorio de emisoras: [radio-browser.info](https://www.radio-browser.info).
 
 ## Licencia
 
-GPL-2.0-or-later
+Apache-2.0. Consulta el archivo [LICENSE](LICENSE).

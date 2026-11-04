@@ -180,8 +180,9 @@ build.sh             build, install, translations (also used by the Makefile)
   session freezes at login. Do not import `gi://Gst` in any module the
   shell loads.
 - **radio-browser.info** asks clients to send a User-Agent and to report
-  each play (`/json/url/<id>`). The client spreads requests across several
-  mirrors and retries when one fails.
+  each play (`/json/url/<id>`). Radiola only reports plays if the user turns
+  on "Help rank the directory" in the preferences (off by default). The
+  client spreads requests across several mirrors and retries when one fails.
 
 Guidelines:
 - Plain modern JavaScript (ES modules), following the GNOME Shell code style.
@@ -198,4 +199,4 @@ Station directory: [radio-browser.info](https://www.radio-browser.info).
 
 ## License
 
-GPL-2.0-or-later
+Apache-2.0. See the [LICENSE](LICENSE) file.

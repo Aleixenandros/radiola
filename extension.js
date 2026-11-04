@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0-or-later
+// SPDX-License-Identifier: Apache-2.0
 //
 // Radiola: internet radio in the GNOME top bar.
 //
@@ -40,25 +40,23 @@ export default class RadiolaExtension extends Extension {
 
         this._mpris = new MprisServer(this);
 
-        this._indicator = new RadiolaIndicator(this);
-        Main.panel.addToStatusArea(this.uuid, this._indicator);
-
-        // Keep playing on the lock screen, but never show our menu there.
+        // The panel menu only exists outside the lock screen.
         Main.sessionMode.connectObject('updated', () => this._syncSessionMode(), this);
         this._syncSessionMode();
     }
 
     disable() {
         // Radiola uses the unlock-dialog session mode so the music keeps
-        // playing while the screen is locked; its menu is hidden there (see
-        // _syncSessionMode()). GNOME enables the extensions that support
-        // the lock screen first, so locking does not disable Radiola.
-        // When disable() runs, everything is stopped and destroyed.
+        // playing while the screen is locked. On the lock screen only the
+        // player and the media controls (MPRIS) stay: the panel menu, with
+        // all its keyboard handling, is destroyed (see _syncSessionMode()).
+        // GNOME enables the extensions that support the lock screen first,
+        // so locking does not disable Radiola. When disable() runs,
+        // everything is stopped and destroyed.
         Main.sessionMode.disconnectObject(this);
         this._saveVolumeNow();
 
-        this._indicator.destroy();
-        this._indicator = null;
+        this._destroyIndicator();
         this._mpris.destroy();
         this._mpris = null;
 
@@ -83,7 +81,9 @@ export default class RadiolaExtension extends Extension {
     playStation(station) {
         this.player.play(station);
         this.store.lastStation = station;
-        this.browser.countClick(station.uuid);
+        // Only if the user agreed to it in the preferences.
+        if (this._settings.get_boolean('report-plays'))
+            this.browser.countClick(station.uuid);
     }
 
     toggleFavorite() {
@@ -141,16 +141,23 @@ export default class RadiolaExtension extends Extension {
 
     openMenu() {
         if (!Main.sessionMode.isLocked)
-            this._indicator.menu.open();
+            this._indicator?.menu.open();
     }
 
     // ── Helpers ──────────────────────────────────────────────────
 
     _syncSessionMode() {
-        const locked = Main.sessionMode.isLocked;
-        this._indicator.visible = !locked;
-        if (locked)
-            this._indicator.menu.close();
+        if (Main.sessionMode.isLocked) {
+            this._destroyIndicator();
+        } else if (!this._indicator) {
+            this._indicator = new RadiolaIndicator(this);
+            Main.panel.addToStatusArea(this.uuid, this._indicator);
+        }
+    }
+
+    _destroyIndicator() {
+        this._indicator?.destroy();
+        this._indicator = null;
     }
 
     _notifyTitle(title) {

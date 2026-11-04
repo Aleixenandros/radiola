@@ -30,6 +30,11 @@
       <default>false</default>
       <summary>Show a notification when the song changes</summary>
     </key>
+    <key name="report-plays" type="b">
+      <default>false</default>
+      <summary>Tell radio-browser.info which of its stations are played</summary>
+      <description>radio-browser.info uses these reports to rank the most popular stations. Off unless the user turns it on.</description>
+    </key>
     <key name="country-code" type="s">
       <default>''</default>
       <summary>Country for popular stations (ISO code such as ES). Empty means the system language country.</summary>

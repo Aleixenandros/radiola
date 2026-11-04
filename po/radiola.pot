@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: radiola@aleixenandros.me\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-04 21:47+0100\n"
+"POT-Creation-Date: 2026-11-04 23:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -257,15 +257,25 @@ msgstr ""
 msgid "Country code"
 msgstr ""
 
+#: prefs.js:531
+msgid "Help rank the directory"
+msgstr ""
+
 #: prefs.js:532
-msgid "About"
+msgid ""
+"Tell radio-browser.info which of its stations you play. It uses this to rank "
+"the most popular ones."
 msgstr ""
 
 #: prefs.js:534
+msgid "About"
+msgstr ""
+
+#: prefs.js:536
 msgid "Station directory"
 msgstr ""
 
-#: prefs.js:535
+#: prefs.js:537
 msgid "Source code and bug reports"
 msgstr ""
 
@@ -338,18 +348,18 @@ msgstr ""
 msgid "worldwide"
 msgstr ""
 
-#: lib/player.js:126
+#: lib/player.js:123
 msgid "Could not open the station address"
 msgstr ""
 
-#: lib/player.js:136 lib/player.js:220 lib/player.js:336
+#: lib/player.js:133 lib/player.js:219 lib/player.js:335
 msgid "Could not play this station"
 msgstr ""
 
-#: lib/player.js:339
+#: lib/player.js:338
 msgid "The station stopped broadcasting"
 msgstr ""
 
-#: lib/player.js:342
+#: lib/player.js:341
 msgid "GStreamer is not available"
 msgstr ""

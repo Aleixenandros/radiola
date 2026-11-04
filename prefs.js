@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0-or-later
+// SPDX-License-Identifier: Apache-2.0
 
 import Adw from 'gi://Adw';
 import Gdk from 'gi://Gdk?version=4.0';
@@ -528,6 +528,8 @@ export default class RadiolaPreferences extends ExtensionPreferences {
         countryRow.connect('apply', () =>
             this._settings.set_string('country-code', countryRow.text.trim().toUpperCase()));
         discover.add(countryRow);
+        discover.add(this._switchRow('report-plays', _('Help rank the directory'),
+            _('Tell radio-browser.info which of its stations you play. It uses this to rank the most popular ones.')));
 
         const about = new Adw.PreferencesGroup({title: _('About')});
         page.add(about);
