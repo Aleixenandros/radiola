@@ -1,7 +1,7 @@
 {
   "uuid": "radiola@aleixenandros.me",
   "name": "Radiola",
-  "description": "Listen to internet radio from the top bar. Search more than 50,000 stations worldwide (radio-browser.info), keep your favorites, see the song that is playing and control playback with the media keys or any media control. Playback keeps going while the screen is locked; the panel menu is hidden on the lock screen.",
+  "description": "Listen to internet radio from the top bar. Search more than 50,000 stations worldwide (radio-browser.info), keep your favorites, see the song that is playing and control playback with the media keys or any media control. Playback keeps going while the screen is locked; the panel menu is hidden on the lock screen. A button in the menu copies the song title to the clipboard.",
   "shell-version": [
     "51"
   ],

@@ -15,42 +15,11 @@ import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js';
 import {FaviconCache} from './lib/favicons.js';
 import {RadiolaIndicator} from './lib/indicator.js';
 import {MprisServer} from './lib/mpris.js';
-import {RadioPlayer, State} from './lib/player.js';
+import {RadioPlayer} from './lib/player.js';
 import {RadioBrowser} from './lib/radioBrowser.js';
 import {StationStore, sameStation} from './lib/stations.js';
 
 const SAVE_VOLUME_DELAY_MS = 500;
-
-// When the screen locks, GNOME disables the extensions that do not run on
-// the lock screen and, to keep their order, also disables and re-enables
-// every extension enabled after them, Radiola included. To keep the music
-// playing through that, a playing player is "parked" on disable() and
-// picked up again by the enable() that follows right away. If no enable()
-// comes (the user really turned Radiola off), it is destroyed shortly after.
-const PARK_TIMEOUT_MS = 1000;
-let parkedPlayer = null;
-let parkedTimeoutId = 0;
-
-function parkPlayer(player) {
-    takeParkedPlayer()?.destroy();
-    parkedPlayer = player;
-    parkedTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, PARK_TIMEOUT_MS, () => {
-        parkedTimeoutId = 0;
-        parkedPlayer?.destroy();
-        parkedPlayer = null;
-        return GLib.SOURCE_REMOVE;
-    });
-}
-
-function takeParkedPlayer() {
-    if (!parkedPlayer)
-        return null;
-    GLib.source_remove(parkedTimeoutId);
-    parkedTimeoutId = 0;
-    const player = parkedPlayer;
-    parkedPlayer = null;
-    return player;
-}
 
 export default class RadiolaExtension extends Extension {
     enable() {
@@ -64,12 +33,9 @@ export default class RadiolaExtension extends Extension {
         this.browser = new RadioBrowser(userAgent);
         this.favicons = new FaviconCache(userAgent);
 
-        this.player = takeParkedPlayer();
-        if (!this.player) {
-            this.player = new RadioPlayer(userAgent);
-            this.player.volume = this._settings.get_double('volume');
-            this.player.station = this.store.lastStation;
-        }
+        this.player = new RadioPlayer(userAgent);
+        this.player.volume = this._settings.get_double('volume');
+        this.player.station = this.store.lastStation;
         this.player.connectObject('title-changed', (_p, title) => this._notifyTitle(title), this);
 
         this._mpris = new MprisServer(this);
@@ -83,6 +49,11 @@ export default class RadiolaExtension extends Extension {
     }
 
     disable() {
+        // Radiola uses the unlock-dialog session mode so the music keeps
+        // playing while the screen is locked; its menu is hidden there (see
+        // _syncSessionMode()). GNOME enables the extensions that support
+        // the lock screen first, so locking does not disable Radiola.
+        // When disable() runs, everything is stopped and destroyed.
         Main.sessionMode.disconnectObject(this);
         this._saveVolumeNow();
 
@@ -92,16 +63,14 @@ export default class RadiolaExtension extends Extension {
         this._mpris = null;
 
         this.player.disconnectObject(this);
-        if (this.player.state === State.STOPPED)
-            this.player.destroy();
-        else
-            parkPlayer(this.player);
+        this.player.destroy();
         this.player = null;
         this.browser.destroy();
         this.browser = null;
         this.favicons.destroy();
         this.favicons = null;
 
+        this._notificationSource?.disconnectObject(this);
         this._notificationSource?.destroy();
         this._notificationSource = null;
         this.store = null;
@@ -190,7 +159,8 @@ export default class RadiolaExtension extends Extension {
 
         if (!this._notificationSource) {
             this._notificationSource = new MessageTray.Source({title: 'Radiola', icon: this.icon});
-            this._notificationSource.connect('destroy', () => (this._notificationSource = null));
+            this._notificationSource.connectObject(
+                'destroy', () => (this._notificationSource = null), this);
             Main.messageTray.add(this._notificationSource);
         }
 

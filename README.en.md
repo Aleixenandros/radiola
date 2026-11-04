@@ -161,11 +161,12 @@ build.sh             build, install, translations (also used by the Makefile)
   `lib/http.js` with the extension; they only depend on GLib and libsoup.
   Do not import anything from GNOME Shell in those three modules.
 - **Lock screen**: the extension declares `unlock-dialog` in
-  `session-modes`. When the screen locks, GNOME disables and re-enables the
-  extensions enabled after any extension that does not run on the lock
-  screen. So the music does not stop, `disable()` "parks" the player if it
-  is playing and the immediate `enable()` picks it up; if no `enable()`
-  comes within a second, it is destroyed (see `extension.js`).
+  `session-modes` so the music keeps playing while the screen is locked
+  (the menu is hidden). At login, GNOME enables the extensions that run
+  on the lock screen first, so locking does not disable Radiola.
+  `disable()` always stops and destroys everything. If Radiola is turned
+  on in the middle of a session, the music stops when the screen locks
+  until the next login.
 - **GStreamer is never loaded inside GNOME Shell.** `lib/player.js`
   starts `lib/playerHelper.js` with `gjs -m` when a station plays and
   talks to it over stdin/stdout (one JSON line per message). The first

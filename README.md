@@ -161,11 +161,12 @@ build.sh              compilar, instalar, traducir (lo usa también el Makefile)
   `lib/radioBrowser.js` y `lib/http.js`, que solo dependen de GLib y
   libsoup. No importes nada de GNOME Shell en esos tres módulos.
 - **Pantalla de bloqueo**: la extensión declara `unlock-dialog` en
-  `session-modes`. Al bloquear, GNOME desactiva y reactiva las extensiones
-  activadas después de cualquiera que no funcione en la pantalla de
-  bloqueo. Para que la música no se corte, `disable()` «aparca» el
-  reproductor si está sonando y el `enable()` inmediato lo recupera; si no
-  llega ningún `enable()` en un segundo, se destruye (ver `extension.js`).
+  `session-modes` para que la música siga sonando con la pantalla
+  bloqueada (el menú se oculta). Al iniciar sesión, GNOME activa primero
+  las extensiones que funcionan en la pantalla de bloqueo, así que
+  bloquear no desactiva Radiola. `disable()` siempre lo para y destruye
+  todo. Si se activa a mitad de sesión, hasta el siguiente inicio de
+  sesión la música se para al bloquear.
 - **GStreamer nunca se carga dentro de GNOME Shell.** `lib/player.js`
   lanza `lib/playerHelper.js` con `gjs -m` al reproducir y le habla por
   stdin/stdout (una línea JSON por mensaje). El primer `Gst.init()` de
