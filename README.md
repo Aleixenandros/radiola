@@ -31,9 +31,10 @@ Comprueba tu versión con `gnome-shell --version`.
 
 ### Opción 1: desde extensions.gnome.org
 
-Cuando esté aprobada, se podrá instalar con un clic desde
-[extensions.gnome.org](https://extensions.gnome.org) o desde la aplicación
-**Gestor de extensiones**, buscando «Radiola».
+Está [en revisión](https://extensions.gnome.org/review/77870) en
+extensions.gnome.org. Cuando la aprueben, se podrá instalar con un clic
+desde [su página](https://extensions.gnome.org/extension/11635/radiola/) o desde la
+aplicación **Gestor de extensiones**, buscando «Radiola».
 
 ### Opción 2: desde una versión publicada
 
