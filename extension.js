@@ -76,8 +76,6 @@ export default class RadiolaExtension extends Extension {
         this._settings = null;
     }
 
-    // ── Actions used by the menu and by MPRIS ────────────────────
-
     playStation(station) {
         this.player.play(station);
         this.store.lastStation = station;
@@ -143,8 +141,6 @@ export default class RadiolaExtension extends Extension {
         if (!Main.sessionMode.isLocked)
             this._indicator?.menu.open();
     }
-
-    // ── Helpers ──────────────────────────────────────────────────
 
     _syncSessionMode() {
         if (Main.sessionMode.isLocked) {

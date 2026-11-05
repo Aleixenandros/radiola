@@ -91,8 +91,6 @@ export default class RadiolaPreferences extends ExtensionPreferences {
         window.add(this._buildGeneralPage());
     }
 
-    // ── Stations page ────────────────────────────────────────────
-
     _buildStationsPage() {
         const page = new Adw.PreferencesPage({
             title: _('Stations'),
@@ -497,8 +495,6 @@ export default class RadiolaPreferences extends ExtensionPreferences {
         console.warn(`[Radiola] ${error.message}`);
         this._window.add_toast(new Adw.Toast({title: _('Something went wrong with the file')}));
     }
-
-    // ── General page ─────────────────────────────────────────────
 
     _buildGeneralPage() {
         const page = new Adw.PreferencesPage({

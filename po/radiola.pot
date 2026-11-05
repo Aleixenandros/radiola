@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: radiola@aleixenandros.me\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-04 23:59+0100\n"
+"POT-Creation-Date: 2026-11-05 00:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,235 +17,235 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: prefs.js:98
+#: prefs.js:96
 msgid "Stations"
 msgstr ""
 
-#: prefs.js:110 lib/indicator.js:311
+#: prefs.js:108 lib/indicator.js:307
 msgid "Favorites"
 msgstr ""
 
-#: prefs.js:111
+#: prefs.js:109
 msgid "Shown in the top bar menu in this order."
 msgstr ""
 
-#: prefs.js:124
+#: prefs.js:122
 msgid "Custom stations"
 msgstr ""
 
-#: prefs.js:125
+#: prefs.js:123
 msgid ""
 "Stations that are not in the directory: add the address of the stream, a "
 "name and, if you like, a logo. They are shown in the menu below the "
 "favorites."
 msgstr ""
 
-#: prefs.js:127
+#: prefs.js:125
 msgid "Add a custom station"
 msgstr ""
 
-#: prefs.js:149
+#: prefs.js:147
 msgid "No favorites yet"
 msgstr ""
 
-#: prefs.js:150
+#: prefs.js:148
 msgid ""
 "Press the star button while a station plays, or add one from the search "
 "below."
 msgstr ""
 
-#: prefs.js:153
+#: prefs.js:151
 msgid "No custom stations yet"
 msgstr ""
 
-#: prefs.js:154
+#: prefs.js:152
 msgid "Press + to add one."
 msgstr ""
 
-#: prefs.js:167
+#: prefs.js:165
 msgid "Move up"
 msgstr ""
 
-#: prefs.js:170
+#: prefs.js:168
 msgid "Move down"
 msgstr ""
 
-#: prefs.js:176
+#: prefs.js:174
 msgid "Edit"
 msgstr ""
 
-#: prefs.js:178
+#: prefs.js:176
 msgid "Remove"
 msgstr ""
 
-#: prefs.js:203
+#: prefs.js:201
 msgid ""
 "Use the address of the stream or of its playlist (.pls, .m3u). The logo is "
 "optional: an image from your files or its web address."
 msgstr ""
 
-#: prefs.js:206
+#: prefs.js:204
 msgid "Name"
 msgstr ""
 
-#: prefs.js:208
+#: prefs.js:206
 msgid "Stream address"
 msgstr ""
 
-#: prefs.js:213
+#: prefs.js:211
 msgid "Logo (optional)"
 msgstr ""
 
-#: prefs.js:218
+#: prefs.js:216
 msgid "Choose an image"
 msgstr ""
 
-#: prefs.js:230
+#: prefs.js:228
 msgid "Cancel"
 msgstr ""
 
-#: prefs.js:231
+#: prefs.js:229
 msgid "Save"
 msgstr ""
 
-#: prefs.js:296
+#: prefs.js:294
 msgid "Images"
 msgstr ""
 
-#: prefs.js:301
+#: prefs.js:299
 msgid "Choose a logo"
 msgstr ""
 
-#: prefs.js:306
+#: prefs.js:304
 msgid "Add custom station"
 msgstr ""
 
-#: prefs.js:312
+#: prefs.js:310
 msgid "That station is already in your custom stations"
 msgstr ""
 
-#: prefs.js:324
+#: prefs.js:322
 msgid "Edit station"
 msgstr ""
 
-#: prefs.js:341
+#: prefs.js:339
 #, javascript-format
 msgid "“%s” removed"
 msgstr ""
 
-#: prefs.js:342
+#: prefs.js:340
 msgid "Undo"
 msgstr ""
 
-#: prefs.js:355
+#: prefs.js:353
 msgid "Find stations"
 msgstr ""
 
-#: prefs.js:356
+#: prefs.js:354
 msgid ""
 "Search the free radio-browser.info directory, with more than 50,000 stations."
 msgstr ""
 
-#: prefs.js:359
+#: prefs.js:357
 msgid "Station name"
 msgstr ""
 
-#: prefs.js:383 lib/indicator.js:473
+#: prefs.js:381 lib/indicator.js:465
 msgid "Searching…"
 msgstr ""
 
-#: prefs.js:391 lib/indicator.js:486
+#: prefs.js:389 lib/indicator.js:478
 msgid "No stations found"
 msgstr ""
 
-#: prefs.js:400 lib/indicator.js:493
+#: prefs.js:398 lib/indicator.js:485
 msgid "Could not reach radio-browser.info"
 msgstr ""
 
-#: prefs.js:401
+#: prefs.js:399
 msgid "Check your internet connection and try again."
 msgstr ""
 
-#: prefs.js:413 prefs.js:420 lib/indicator.js:115 lib/indicator.js:164
+#: prefs.js:411 prefs.js:418 lib/indicator.js:113 lib/indicator.js:162
 msgid "Add to favorites"
 msgstr ""
 
-#: prefs.js:420
+#: prefs.js:418
 msgid "Already in favorites"
 msgstr ""
 
-#: prefs.js:430
+#: prefs.js:428
 msgid "Backup"
 msgstr ""
 
-#: prefs.js:431
+#: prefs.js:429
 msgid ""
 "Save your favorites and custom stations to a file, or load them on another "
 "computer. Logos chosen from your files stay on this computer."
 msgstr ""
 
-#: prefs.js:434
+#: prefs.js:432
 msgid "Export stations"
 msgstr ""
 
-#: prefs.js:440
+#: prefs.js:438
 msgid "Import stations"
 msgstr ""
 
-#: prefs.js:441
+#: prefs.js:439
 msgid "Stations you already have are kept."
 msgstr ""
 
-#: prefs.js:451
+#: prefs.js:449
 msgid "JSON files"
 msgstr ""
 
-#: prefs.js:471
+#: prefs.js:469
 msgid "Stations exported"
 msgstr ""
 
-#: prefs.js:492
+#: prefs.js:490
 #, javascript-format
 msgid "%d stations imported"
 msgstr ""
 
-#: prefs.js:498
+#: prefs.js:496
 msgid "Something went wrong with the file"
 msgstr ""
 
-#: prefs.js:505
+#: prefs.js:501
 msgid "General"
 msgstr ""
 
-#: prefs.js:509
+#: prefs.js:505
 msgid "Top bar"
 msgstr ""
 
-#: prefs.js:511
+#: prefs.js:507
 msgid "Show the title next to the icon"
 msgstr ""
 
-#: prefs.js:512
+#: prefs.js:508
 msgid "The song title, or the station name, while playing"
 msgstr ""
 
-#: prefs.js:513
+#: prefs.js:509
 msgid "Notify song changes"
 msgstr ""
 
-#: prefs.js:514
+#: prefs.js:510
 msgid "Show a notification when a new song starts"
 msgstr ""
 
-#: prefs.js:516
+#: prefs.js:512
 msgid "none"
 msgstr ""
 
-#: prefs.js:518
+#: prefs.js:514
 msgid "Popular stations"
 msgstr ""
 
-#: prefs.js:519
+#: prefs.js:515
 #, javascript-format
 msgid ""
 "Country of the popular stations shown in “Discover stations”. Use a two-"
@@ -253,98 +253,98 @@ msgid ""
 "system language (%s)."
 msgstr ""
 
-#: prefs.js:524
+#: prefs.js:520
 msgid "Country code"
 msgstr ""
 
-#: prefs.js:531
+#: prefs.js:527
 msgid "Help rank the directory"
 msgstr ""
 
-#: prefs.js:532
+#: prefs.js:528
 msgid ""
 "Tell radio-browser.info which of its stations you play. It uses this to rank "
 "the most popular ones."
 msgstr ""
 
-#: prefs.js:534
+#: prefs.js:530
 msgid "About"
 msgstr ""
 
-#: prefs.js:536
+#: prefs.js:532
 msgid "Station directory"
 msgstr ""
 
-#: prefs.js:537
+#: prefs.js:533
 msgid "Source code and bug reports"
 msgstr ""
 
-#: lib/indicator.js:117
+#: lib/indicator.js:115
 msgid "Copy song title"
 msgstr ""
 
-#: lib/indicator.js:119
+#: lib/indicator.js:117
 msgid "Play or stop"
 msgstr ""
 
-#: lib/indicator.js:143
+#: lib/indicator.js:141
 msgid "No station selected"
 msgstr ""
 
-#: lib/indicator.js:149
+#: lib/indicator.js:147
 msgid "Connecting…"
 msgstr ""
 
-#: lib/indicator.js:151
+#: lib/indicator.js:149
 msgid "Playing"
 msgstr ""
 
-#: lib/indicator.js:153
+#: lib/indicator.js:151
 msgid "Stopped"
 msgstr ""
 
-#: lib/indicator.js:153
+#: lib/indicator.js:151
 msgid "Choose a station below"
 msgstr ""
 
-#: lib/indicator.js:164
+#: lib/indicator.js:162
 msgid "Remove from favorites"
 msgstr ""
 
-#: lib/indicator.js:185
+#: lib/indicator.js:183
 msgid "Volume"
 msgstr ""
 
-#: lib/indicator.js:328
+#: lib/indicator.js:324
 msgid "Discover stations"
 msgstr ""
 
-#: lib/indicator.js:334
+#: lib/indicator.js:330
 msgid "Preferences"
 msgstr ""
 
-#: lib/indicator.js:345
+#: lib/indicator.js:341
 msgid "Search by name…"
 msgstr ""
 
-#: lib/indicator.js:395
+#: lib/indicator.js:389
 msgid "No favorites yet. Play a station and press the star button to save it."
 msgstr ""
 
-#: lib/indicator.js:404
+#: lib/indicator.js:398
 msgid "Custom"
 msgstr ""
 
-#: lib/indicator.js:471
+#: lib/indicator.js:463
 msgid "Results"
 msgstr ""
 
-#: lib/indicator.js:472
+#: lib/indicator.js:464
 #, javascript-format
 msgid "Popular stations (%s)"
 msgstr ""
 
-#: lib/indicator.js:472
+#: lib/indicator.js:464
 msgid "worldwide"
 msgstr ""
 
@@ -352,14 +352,14 @@ msgstr ""
 msgid "Could not open the station address"
 msgstr ""
 
-#: lib/player.js:133 lib/player.js:219 lib/player.js:335
+#: lib/player.js:133 lib/player.js:217 lib/player.js:333
 msgid "Could not play this station"
 msgstr ""
 
-#: lib/player.js:338
+#: lib/player.js:336
 msgid "The station stopped broadcasting"
 msgstr ""
 
-#: lib/player.js:341
+#: lib/player.js:339
 msgid "GStreamer is not available"
 msgstr ""

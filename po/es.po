@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: radiola@aleixenandros.me\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-04 23:59+0100\n"
+"POT-Creation-Date: 2026-11-05 00:20+0100\n"
 "PO-Revision-Date: 2026-11-04 19:05+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -18,23 +18,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: prefs.js:98
+#: prefs.js:96
 msgid "Stations"
 msgstr "Emisoras"
 
-#: prefs.js:110 lib/indicator.js:311
+#: prefs.js:108 lib/indicator.js:307
 msgid "Favorites"
 msgstr "Favoritas"
 
-#: prefs.js:111
+#: prefs.js:109
 msgid "Shown in the top bar menu in this order."
 msgstr "Se muestran en el menú de la barra superior en este orden."
 
-#: prefs.js:124
+#: prefs.js:122
 msgid "Custom stations"
 msgstr "Emisoras personalizadas"
 
-#: prefs.js:125
+#: prefs.js:123
 msgid ""
 "Stations that are not in the directory: add the address of the stream, a "
 "name and, if you like, a logo. They are shown in the menu below the "
@@ -44,15 +44,15 @@ msgstr ""
 "nombre y, si quieres, un logo. Se muestran en el menú debajo de las "
 "favoritas."
 
-#: prefs.js:127
+#: prefs.js:125
 msgid "Add a custom station"
 msgstr "Añadir una emisora personalizada"
 
-#: prefs.js:149
+#: prefs.js:147
 msgid "No favorites yet"
 msgstr "Aún no tienes favoritas"
 
-#: prefs.js:150
+#: prefs.js:148
 msgid ""
 "Press the star button while a station plays, or add one from the search "
 "below."
@@ -60,31 +60,31 @@ msgstr ""
 "Pulsa la estrella mientras suena una emisora o añade una desde la búsqueda "
 "de abajo."
 
-#: prefs.js:153
+#: prefs.js:151
 msgid "No custom stations yet"
 msgstr "Aún no hay emisoras personalizadas"
 
-#: prefs.js:154
+#: prefs.js:152
 msgid "Press + to add one."
 msgstr "Pulsa + para añadir una."
 
-#: prefs.js:167
+#: prefs.js:165
 msgid "Move up"
 msgstr "Subir"
 
-#: prefs.js:170
+#: prefs.js:168
 msgid "Move down"
 msgstr "Bajar"
 
-#: prefs.js:176
+#: prefs.js:174
 msgid "Edit"
 msgstr "Editar"
 
-#: prefs.js:178
+#: prefs.js:176
 msgid "Remove"
 msgstr "Quitar"
 
-#: prefs.js:203
+#: prefs.js:201
 msgid ""
 "Use the address of the stream or of its playlist (.pls, .m3u). The logo is "
 "optional: an image from your files or its web address."
@@ -92,102 +92,102 @@ msgstr ""
 "Usa la dirección del stream o de su lista de reproducción (.pls, .m3u). El "
 "logo es opcional: una imagen de tus archivos o su dirección web."
 
-#: prefs.js:206
+#: prefs.js:204
 msgid "Name"
 msgstr "Nombre"
 
-#: prefs.js:208
+#: prefs.js:206
 msgid "Stream address"
 msgstr "Dirección del stream"
 
-#: prefs.js:213
+#: prefs.js:211
 msgid "Logo (optional)"
 msgstr "Logo (opcional)"
 
-#: prefs.js:218
+#: prefs.js:216
 msgid "Choose an image"
 msgstr "Elegir una imagen"
 
-#: prefs.js:230
+#: prefs.js:228
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: prefs.js:231
+#: prefs.js:229
 msgid "Save"
 msgstr "Guardar"
 
-#: prefs.js:296
+#: prefs.js:294
 msgid "Images"
 msgstr "Imágenes"
 
-#: prefs.js:301
+#: prefs.js:299
 msgid "Choose a logo"
 msgstr "Elige un logo"
 
-#: prefs.js:306
+#: prefs.js:304
 msgid "Add custom station"
 msgstr "Añadir emisora personalizada"
 
-#: prefs.js:312
+#: prefs.js:310
 msgid "That station is already in your custom stations"
 msgstr "Esa emisora ya está en tus emisoras personalizadas"
 
-#: prefs.js:324
+#: prefs.js:322
 msgid "Edit station"
 msgstr "Editar emisora"
 
-#: prefs.js:341
+#: prefs.js:339
 #, javascript-format
 msgid "“%s” removed"
 msgstr "«%s» quitada"
 
-#: prefs.js:342
+#: prefs.js:340
 msgid "Undo"
 msgstr "Deshacer"
 
-#: prefs.js:355
+#: prefs.js:353
 msgid "Find stations"
 msgstr "Buscar emisoras"
 
-#: prefs.js:356
+#: prefs.js:354
 msgid ""
 "Search the free radio-browser.info directory, with more than 50,000 stations."
 msgstr ""
 "Busca en el directorio libre radio-browser.info, con más de 50 000 emisoras."
 
-#: prefs.js:359
+#: prefs.js:357
 msgid "Station name"
 msgstr "Nombre de la emisora"
 
-#: prefs.js:383 lib/indicator.js:473
+#: prefs.js:381 lib/indicator.js:465
 msgid "Searching…"
 msgstr "Buscando…"
 
-#: prefs.js:391 lib/indicator.js:486
+#: prefs.js:389 lib/indicator.js:478
 msgid "No stations found"
 msgstr "No se han encontrado emisoras"
 
-#: prefs.js:400 lib/indicator.js:493
+#: prefs.js:398 lib/indicator.js:485
 msgid "Could not reach radio-browser.info"
 msgstr "No se pudo conectar con radio-browser.info"
 
-#: prefs.js:401
+#: prefs.js:399
 msgid "Check your internet connection and try again."
 msgstr "Comprueba tu conexión a internet y vuelve a intentarlo."
 
-#: prefs.js:413 prefs.js:420 lib/indicator.js:115 lib/indicator.js:164
+#: prefs.js:411 prefs.js:418 lib/indicator.js:113 lib/indicator.js:162
 msgid "Add to favorites"
 msgstr "Añadir a favoritas"
 
-#: prefs.js:420
+#: prefs.js:418
 msgid "Already in favorites"
 msgstr "Ya está en favoritas"
 
-#: prefs.js:430
+#: prefs.js:428
 msgid "Backup"
 msgstr "Copia de seguridad"
 
-#: prefs.js:431
+#: prefs.js:429
 msgid ""
 "Save your favorites and custom stations to a file, or load them on another "
 "computer. Logos chosen from your files stay on this computer."
@@ -196,68 +196,68 @@ msgstr ""
 "otro ordenador. Los logos elegidos de tus archivos se quedan en este "
 "ordenador."
 
-#: prefs.js:434
+#: prefs.js:432
 msgid "Export stations"
 msgstr "Exportar emisoras"
 
-#: prefs.js:440
+#: prefs.js:438
 msgid "Import stations"
 msgstr "Importar emisoras"
 
-#: prefs.js:441
+#: prefs.js:439
 msgid "Stations you already have are kept."
 msgstr "Las emisoras que ya tienes se conservan."
 
-#: prefs.js:451
+#: prefs.js:449
 msgid "JSON files"
 msgstr "Archivos JSON"
 
-#: prefs.js:471
+#: prefs.js:469
 msgid "Stations exported"
 msgstr "Emisoras exportadas"
 
-#: prefs.js:492
+#: prefs.js:490
 #, javascript-format
 msgid "%d stations imported"
 msgstr "%d emisoras importadas"
 
-#: prefs.js:498
+#: prefs.js:496
 msgid "Something went wrong with the file"
 msgstr "Ha habido un problema con el archivo"
 
-#: prefs.js:505
+#: prefs.js:501
 msgid "General"
 msgstr "General"
 
-#: prefs.js:509
+#: prefs.js:505
 msgid "Top bar"
 msgstr "Barra superior"
 
-#: prefs.js:511
+#: prefs.js:507
 msgid "Show the title next to the icon"
 msgstr "Mostrar el título junto al icono"
 
-#: prefs.js:512
+#: prefs.js:508
 msgid "The song title, or the station name, while playing"
 msgstr "El título de la canción, o el nombre de la emisora, mientras suena"
 
-#: prefs.js:513
+#: prefs.js:509
 msgid "Notify song changes"
 msgstr "Avisar de cambios de canción"
 
-#: prefs.js:514
+#: prefs.js:510
 msgid "Show a notification when a new song starts"
 msgstr "Muestra una notificación cuando empieza una canción nueva"
 
-#: prefs.js:516
+#: prefs.js:512
 msgid "none"
 msgstr "ninguno"
 
-#: prefs.js:518
+#: prefs.js:514
 msgid "Popular stations"
 msgstr "Emisoras populares"
 
-#: prefs.js:519
+#: prefs.js:515
 #, javascript-format
 msgid ""
 "Country of the popular stations shown in “Discover stations”. Use a two-"
@@ -268,15 +268,15 @@ msgstr ""
 "código de dos letras como ES, MX o AR. Déjalo vacío para usar el país del "
 "idioma del sistema (%s)."
 
-#: prefs.js:524
+#: prefs.js:520
 msgid "Country code"
 msgstr "Código de país"
 
-#: prefs.js:531
+#: prefs.js:527
 msgid "Help rank the directory"
 msgstr "Ayudar a ordenar el directorio"
 
-#: prefs.js:532
+#: prefs.js:528
 msgid ""
 "Tell radio-browser.info which of its stations you play. It uses this to rank "
 "the most popular ones."
@@ -284,86 +284,86 @@ msgstr ""
 "Avisa a radio-browser.info de las emisoras del directorio que reproduces. Lo "
 "usa para calcular las más populares."
 
-#: prefs.js:534
+#: prefs.js:530
 msgid "About"
 msgstr "Acerca de"
 
-#: prefs.js:536
+#: prefs.js:532
 msgid "Station directory"
 msgstr "Directorio de emisoras"
 
-#: prefs.js:537
+#: prefs.js:533
 msgid "Source code and bug reports"
 msgstr "Código fuente y avisos de errores"
 
-#: lib/indicator.js:117
+#: lib/indicator.js:115
 msgid "Copy song title"
 msgstr "Copiar el título de la canción"
 
-#: lib/indicator.js:119
+#: lib/indicator.js:117
 msgid "Play or stop"
 msgstr "Reproducir o parar"
 
-#: lib/indicator.js:143
+#: lib/indicator.js:141
 msgid "No station selected"
 msgstr "Ninguna emisora elegida"
 
-#: lib/indicator.js:149
+#: lib/indicator.js:147
 msgid "Connecting…"
 msgstr "Conectando…"
 
-#: lib/indicator.js:151
+#: lib/indicator.js:149
 msgid "Playing"
 msgstr "Reproduciendo"
 
-#: lib/indicator.js:153
+#: lib/indicator.js:151
 msgid "Stopped"
 msgstr "Parada"
 
-#: lib/indicator.js:153
+#: lib/indicator.js:151
 msgid "Choose a station below"
 msgstr "Elige una emisora abajo"
 
-#: lib/indicator.js:164
+#: lib/indicator.js:162
 msgid "Remove from favorites"
 msgstr "Quitar de favoritas"
 
-#: lib/indicator.js:185
+#: lib/indicator.js:183
 msgid "Volume"
 msgstr "Volumen"
 
-#: lib/indicator.js:328
+#: lib/indicator.js:324
 msgid "Discover stations"
 msgstr "Descubrir emisoras"
 
-#: lib/indicator.js:334
+#: lib/indicator.js:330
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: lib/indicator.js:345
+#: lib/indicator.js:341
 msgid "Search by name…"
 msgstr "Buscar por nombre…"
 
-#: lib/indicator.js:395
+#: lib/indicator.js:389
 msgid "No favorites yet. Play a station and press the star button to save it."
 msgstr ""
 "Aún no tienes favoritas. Reproduce una emisora y pulsa el botón de la "
 "estrella para guardarla."
 
-#: lib/indicator.js:404
+#: lib/indicator.js:398
 msgid "Custom"
 msgstr "Personalizadas"
 
-#: lib/indicator.js:471
+#: lib/indicator.js:463
 msgid "Results"
 msgstr "Resultados"
 
-#: lib/indicator.js:472
+#: lib/indicator.js:464
 #, javascript-format
 msgid "Popular stations (%s)"
 msgstr "Emisoras populares (%s)"
 
-#: lib/indicator.js:472
+#: lib/indicator.js:464
 msgid "worldwide"
 msgstr "todo el mundo"
 
@@ -371,14 +371,14 @@ msgstr "todo el mundo"
 msgid "Could not open the station address"
 msgstr "No se pudo abrir la dirección de la emisora"
 
-#: lib/player.js:133 lib/player.js:219 lib/player.js:335
+#: lib/player.js:133 lib/player.js:217 lib/player.js:333
 msgid "Could not play this station"
 msgstr "No se pudo reproducir esta emisora"
 
-#: lib/player.js:338
+#: lib/player.js:336
 msgid "The station stopped broadcasting"
 msgstr "La emisora ha dejado de emitir"
 
-#: lib/player.js:341
+#: lib/player.js:339
 msgid "GStreamer is not available"
 msgstr "GStreamer no está disponible"

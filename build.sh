@@ -29,8 +29,6 @@ ZIP=$BUILD_DIR/$UUID.shell-extension.zip
 INSTALL_DIR=${XDG_DATA_HOME:-$HOME/.local/share}/gnome-shell/extensions/$UUID
 JS_FILES=(extension.js prefs.js lib/*.js)
 
-# ── Output helpers ─────────────────────────────────────────────────
-
 # Spanish messages when the locale is Spanish, English otherwise.
 if [[ ${LC_ALL:-${LC_MESSAGES:-${LANG:-}}} == es* ]]; then ES=1; else ES=0; fi
 
@@ -47,8 +45,6 @@ step() { printf '%s==>%s %s\n' "$BLUE$BOLD" "$RESET" "$*"; }
 ok()   { printf '%sOK%s %s\n' "$GREEN" "$RESET" "$*"; }
 warn() { printf '%s!%s %s\n' "$YELLOW" "$RESET" "$*" >&2; }
 die()  { printf '%sError:%s %s\n' "$RED" "$RESET" "$*" >&2; exit 1; }
-
-# ── Dependencies ───────────────────────────────────────────────────
 
 # Package that provides a tool on each distribution family.
 package_for() {
@@ -86,8 +82,6 @@ require() {
     exit 1
 }
 
-# ── Info ───────────────────────────────────────────────────────────
-
 shell_version() { gnome-shell --version 2>/dev/null | grep -oE '[0-9]+' | head -1; }
 
 supported_versions() {
@@ -113,8 +107,6 @@ is_installed() { [[ -f $INSTALL_DIR/metadata.json ]]; }
 is_enabled() {
     gsettings get org.gnome.shell enabled-extensions 2>/dev/null | grep -q "'$UUID'"
 }
-
-# ── Commands ───────────────────────────────────────────────────────
 
 cmd_check() {
     require glib-compile-schemas msgfmt
@@ -301,8 +293,6 @@ cmd_menu() {
         *) die "$(t 'Invalid option' 'Opción no válida')" ;;
     esac
 }
-
-# ── Main ───────────────────────────────────────────────────────────
 
 command=${1:-}
 [[ $# -gt 0 ]] && shift
