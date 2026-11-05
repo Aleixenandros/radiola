@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import Adw from 'gi://Adw';
-import Gdk from 'gi://Gdk?version=4.0';
+import Gdk from 'gi://Gdk';
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import Gtk from 'gi://Gtk';
@@ -80,15 +80,32 @@ export default class RadiolaPreferences extends ExtensionPreferences {
         });
 
         window.set_default_size(680, 820);
+        window.add(this._buildStationsPage());
+        window.add(this._buildGeneralPage());
+
+        const handlerIds = [
+            this._settings.connect('changed::stations', () => this._rebuildList('favorites')),
+            this._settings.connect('changed::custom-stations', () => this._rebuildList('custom')),
+        ];
+
         window.connect('close-request', () => {
+            handlerIds.forEach(id => this._settings.disconnect(id));
             this._cancellable?.cancel();
             this._browser.destroy();
             this._favicons.destroy();
+
+            this._window = null;
+            this._settings = null;
+            this._store = null;
+            this._browser = null;
+            this._favicons = null;
+            this._fallbackIcon = null;
+            this._favoritesList = null;
+            this._customList = null;
+            this._resultsList = null;
+            this._cancellable = null;
             return false;
         });
-
-        window.add(this._buildStationsPage());
-        window.add(this._buildGeneralPage());
     }
 
     _buildStationsPage() {
@@ -111,8 +128,6 @@ export default class RadiolaPreferences extends ExtensionPreferences {
 
         this._favoritesList = boxedList();
         group.add(this._favoritesList);
-
-        this._settings.connect('changed::stations', () => this._rebuildList('favorites'));
         this._rebuildList('favorites');
         return group;
     }
@@ -127,8 +142,6 @@ export default class RadiolaPreferences extends ExtensionPreferences {
 
         this._customList = boxedList();
         group.add(this._customList);
-
-        this._settings.connect('changed::custom-stations', () => this._rebuildList('custom'));
         this._rebuildList('custom');
         return group;
     }
