@@ -31,10 +31,9 @@ Comprueba tu versión con `gnome-shell --version`.
 
 ### Opción 1: desde extensions.gnome.org
 
-Está [en revisión](https://extensions.gnome.org/review/77870) en
-extensions.gnome.org. Cuando la aprueben, se podrá instalar con un clic
-desde [su página](https://extensions.gnome.org/extension/11635/radiola/) o desde la
-aplicación **Gestor de extensiones**, buscando «Radiola».
+Instálala con un clic desde
+[su página en extensions.gnome.org](https://extensions.gnome.org/extension/11635/radiola/)
+o desde la aplicación **Gestor de extensiones**, buscando «Radiola».
 
 ### Opción 2: desde una versión publicada
 
@@ -114,9 +113,10 @@ o `./build.sh uninstall` si la instalaste desde el código.
 
 Radiola se conecta a:
 
-- **radio-browser.info**, para buscar emisoras y listar las populares. Al
-  reproducir una emisora del directorio se lo comunica a radio-browser.info,
-  como pide su API para calcular las más escuchadas.
+- **radio-browser.info**, para buscar emisoras y listar las populares. Si
+  activas «Ayudar a ordenar el directorio» en las preferencias (desactivado
+  por defecto), al reproducir una emisora del directorio se lo comunica a
+  radio-browser.info, como pide su API para calcular las más escuchadas.
 - **La emisora que escuchas**, para recibir el audio y su logo. Los logos se
   guardan en `~/.cache/radiola` para no descargarlos cada vez.
 

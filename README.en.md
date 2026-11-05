@@ -30,10 +30,9 @@ Check your version with `gnome-shell --version`.
 
 ### Option 1: from extensions.gnome.org
 
-It is [under review](https://extensions.gnome.org/review/77870) on
-extensions.gnome.org. Once approved, it can be installed with one click
-from [its page](https://extensions.gnome.org/extension/11635/radiola/) or from the
-**Extension Manager** app, searching for “Radiola”.
+Install it with one click from
+[its page on extensions.gnome.org](https://extensions.gnome.org/extension/11635/radiola/)
+or from the **Extension Manager** app, searching for “Radiola”.
 
 ### Option 2: from a published release
 
@@ -113,9 +112,10 @@ or `./build.sh uninstall` if you installed it from source.
 
 Radiola connects to:
 
-- **radio-browser.info**, to search stations and list popular ones. When
-  you play a station from the directory it tells radio-browser.info, as its
-  API asks, to rank the most played stations.
+- **radio-browser.info**, to search stations and list popular ones. If
+  you turn on "Help rank the directory" in the preferences (off by default),
+  playing a station from the directory tells radio-browser.info, as its API
+  asks, to rank the most played stations.
 - **The station you listen to**, for the audio and its logo. Logos are kept
   in `~/.cache/radiola` so they are not downloaded every time.
 
